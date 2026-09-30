@@ -56,7 +56,7 @@ async function gatewayPay(){
  const total=Math.round(cartTotal());if(!total){toast("Your cart is empty");return}
  const btn=$("#gatewayBtn");if(btn){btn.disabled=true;btn.textContent="Preparing…"}
  try{
-  const r=await fetch("https://watchpays-api.rowelix153.workers.dev/create-payment",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({amount:total,source:"maison-hampers",items:getCart()})});
+  const r=await fetch("https://watchpays-api.moxoga3282.workers.dev/create-payment",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({amount:total,source:"maison-hampers",items:getCart()})});
   const d=await r.json();if(d.success&&d.payment_url)window.location.href=d.payment_url;else throw new Error(d.error||d.message||"Payment creation failed");
  }catch(e){console.error(e);toast(e.message||"Payment service unavailable");if(btn){btn.disabled=false;btn.textContent="Pay securely via Gateway"}}
 }
